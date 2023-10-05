@@ -47,4 +47,10 @@ public class BookController1 {
         return bookService1.updateById(id,book);
 
     }
+
+    @PostMapping("/multiple_book_data/{value}")
+    public List<Book1> bookMultipleData(@PathVariable ("value") int value){
+        System.out.println("successfully inserted");
+        return bookService1.bookMultipleData(value);
+    }
 }

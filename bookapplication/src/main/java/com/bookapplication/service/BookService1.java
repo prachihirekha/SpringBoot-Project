@@ -2,6 +2,9 @@ package com.bookapplication.service;
 
 import com.bookapplication.doe.BookRepository1;
 import com.bookapplication.model.Book1;
+import com.bookapplication.util.GenerateAuthorName;
+import com.bookapplication.util.GenerateBookName;
+import com.bookapplication.util.GenerateDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,16 @@ public class BookService1 {
             bookRepository1.save(book1);
         }
     }
+    public List<Book1> bookMultipleData(int size){
+        List<Book1> list= new ArrayList<>();
+        for(int i =0;i<size;i++){
+            Book1 b=Book1.builder().bookName(GenerateBookName.bookName()).authorName(GenerateAuthorName.authorName())
+                    .date(GenerateDate.date()).build();
+            list.add(b);
+        }
+        return bookRepository1.saveAll(list);
+
+    }
 
     public List<Book1> getAllBooks() {
         return bookRepository1.findAll();
@@ -45,6 +58,7 @@ public class BookService1 {
     public Optional<Book1> updateById(int id, Book1 book1) {
         Optional<Book1> bookId = bookRepository1.findById(id);
         if (bookId != null) {
+            book1.setId(id);
             bookRepository1.save(book1);
         }
         return bookId;

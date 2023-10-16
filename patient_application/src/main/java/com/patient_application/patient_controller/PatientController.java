@@ -19,6 +19,10 @@ public class PatientController {
         System.out.println("insert successfully");
         return patientService.insertedPatient(value);
  }
+ @PostMapping("/patient")
+        public Patient insertSinglePatient(@RequestBody Patient patient){
+        return patientService.insertSinglePatient(patient);
+ }
     @GetMapping("/get_all_patient")
     public List<Patient> getAllPatient(){
         return patientService.getAllPatient();

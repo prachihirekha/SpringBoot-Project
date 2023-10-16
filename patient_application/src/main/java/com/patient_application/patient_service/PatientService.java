@@ -43,4 +43,8 @@ public class PatientService {
        }
        return patientDetails;
     }
+
+    public Object insertSinglePatient(Patient patient) {
+        return  patientRepository.save(patient);
+    }
 }

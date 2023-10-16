@@ -20,7 +20,7 @@ public class PatientController {
         return patientService.insertedPatient(value);
  }
  @PostMapping("/patient")
-        public Patient insertSinglePatient(@RequestBody Patient patient){
+        public Object insertSinglePatient(@RequestBody Patient patient){
         return patientService.insertSinglePatient(patient);
  }
     @GetMapping("/get_all_patient")

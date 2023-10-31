@@ -18,13 +18,14 @@ public class PatientService {
     public List<Patient> insertedPatient(int size) {
         List<Patient> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-           Patient patient=Patient.builder().Phone(GeneratePhoneNo.generatePhoneNumber()).state(GenerateStateName.generateStateName())
-                   .city(GenerateCity.generateCity()).firstName(GenerateFirstName.generateName()).disease(GenerateDisease.generateDisease()).lastName(GenerateLastName.generateLastName()).build();
-           list.add(patient);
+            Patient patient = Patient.builder().Phone(GeneratePhoneNo.generatePhoneNumber()).state(GenerateStateName.generateStateName())
+                    .city(GenerateCity.generateCity()).firstName(GenerateFirstName.generateName()).disease(GenerateDisease.generateDisease()).lastName(GenerateLastName.generateLastName()).build();
+            list.add(patient);
         }
         return patientRepository.saveAll(list);
     }
-    public List<Patient> getAllPatient(){
+
+    public List<Patient> getAllPatient() {
         return patientRepository.findAll();
     }
 
@@ -33,18 +34,18 @@ public class PatientService {
     }
 
     public void deleteById(int id) {
-      patientRepository.deleteById(id);
+        patientRepository.deleteById(id);
     }
 
     public Optional<Patient> updatePatient(int id, Patient patient) {
-       Optional <Patient> patientDetails=patientRepository.findById(id);
-       if (patientDetails!=null){
-           patientRepository.save(patient);
-       }
-       return patientDetails;
+        Optional<Patient> patientDetails = patientRepository.findById(id);
+        if (patientDetails != null) {
+            patientRepository.save(patient);
+        }
+        return patientDetails;
     }
 
     public Object insertSinglePatient(Patient patient) {
-        return  patientRepository.save(patient);
+        return patientRepository.save(patient);
     }
 }
